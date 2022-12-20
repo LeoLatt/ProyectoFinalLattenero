@@ -1,13 +1,55 @@
 from django.shortcuts import render
-from AppLogin.registroForm import CrearUsuario
+from AppLogin.forms import CrearUsuario, UserEditForm, AvatarForm
+from .models import Avatar
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+#@login_required
 def inicio(request):
+    lista=Avatar.objects.filter(user=request.user)
     
+    return render (request, "inicio.html", {"imagen":obtenerAvatar(request)})
+
     return render (request, "inicio.html")
+
+
+def obtenerAvatar(request):
+    lista=Avatar.objects.filter(user=request.user)
+    if len(lista)!=0:
+        imagen=lista[0].imagen.url
+    else:
+        imagen="/media/avatares/avatarpordefecto.jpg"
+    return imagen
+
+
+def agregarAvatar(request):
+    if request.method=="POST":
+        form=AvatarForm(request.POST, request.FILES)#ademas del post, como trae archivos (yo se que trae archivos xq conozco el form, tengo q usar request.files)
+        if form.is_valid():
+            avatarViejo=Avatar.objects.filter(user=request.user)
+            if len(avatarViejo)!=0:
+                avatarViejo[0].delete()
+            avatar=Avatar(user=request.user, imagen=request.FILES["imagen"])
+            avatar.save()
+            return render(request, "inicio.html", {"mensaje":"Avatar agregado correctamente"})
+        else:
+            return render(request, "AgregarAvatar.html", {"formulario": form, "usuario": request.user})
+    else:
+        form=AvatarForm()
+        return render(request , "AgregarAvatar.html", {"formulario": form, "usuario": request.user})
+
+
+
+
+
+
+
+
+
+
 
 
 def register(request):
@@ -26,14 +68,14 @@ def register(request):
     return render(request, "register.html", {"form":form})
 
 
-def login(request):
+def logueo(request):
     if request.method == "POST":
         form=AuthenticationForm(request, data=request.POST)
         if form.is_valid():
             usu=form.cleaned_data.get("username")
             clave=form.cleaned_data.get("password")
             usuario=authenticate(username=usu, password=clave)#trae un usuario de la base, que tenga ese usuario y ese pass, si existe, lo trae y si no None
-
+            print(usuario)
             if usuario is not None:    
                 login(request, usuario)
                 return render(request, 'inicio.html', {'mensaje':f"Bienvenido {usuario}" })
@@ -46,3 +88,23 @@ def login(request):
     else:
         form = AuthenticationForm()
     return render(request, "login.html", {"form":form})
+
+@login_required
+def editarPerfil(request):
+    usuario=request.user
+    if request.method=="POST":
+        form=UserEditForm(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            usuario.email=info["email"]
+            usuario.password1=info["password1"]
+            usuario.password2=info["password2"]
+            usuario.first_name=info["first_name"]
+            usuario.last_name=info["last_name"]
+            usuario.save()
+            return render(request, "inicio.html", {"mensaje":"Perfil editado correctamente"})
+        else:
+            return render(request, "editarUsuario.html", {"form":form, "nombreusuario":usuario.username, "mensaje":"Error al editar el perfil"})
+    else:
+        form=UserEditForm(instance=usuario)
+        return render(request, "editarUsuario.html", {"form":form, "nombreusuario":usuario.username})
