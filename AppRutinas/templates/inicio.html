@@ -1,0 +1,12 @@
+    {% extends "index.html" %} <!--ahora inicio sos hijo de template index "extends" lo hace heredar MIN.28.C20-->
+
+    {% load static %} <!--siempre se cargan los estaticos-->
+
+    {% block titulo %}<!--adentro de donde tu papa (padre) tiene el 'bloque titulo'(block titulo) -->
+    
+    <h1>Fitness Blog</h1>  <!--busca el bloque titulo en padre y pone ese mensaje-->
+    <span class="subheading">El blog perfecto para tus entrenamientos</span> <!--viene del return de la view-->
+
+    {% endblock %}<!--fin de bloque-->
+    
+    

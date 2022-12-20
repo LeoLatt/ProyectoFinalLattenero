@@ -1,0 +1,21 @@
+{% extends "index.html" %} <!--ahora inicio sos hijo de template index "extends" lo hace heredar MIN.28.C20-->
+
+{% load static %} <!--siempre se cargan los estaticos-->
+
+{% block titulo %}
+<h1 class="mb-5">FORMULARIO DE REGISTRO</h1>
+{% endblock %}
+    
+{% block contenido_que_cambia %}
+    <form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+
+        <input type="submit" value="registrar usuario">
+    </form>
+    {{ mensaje }}
+
+{% endblock %}
+
+

@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h2 class="mb-5">Postee su Rutina Favorita</h2>
+{% endblock %}
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+    {% block contenido_que_cambia %}
+            
+    <form method="post">
+        {% csrf_token %}
+    <div class="form-outline">
+        {{form.as_p}}
+        <br>
+    </div>  
+    <!--Blog Text Area-->
+        {{form.media}}
+        <input type="submit">
+    </form>
+
+    {% endblock %}
+</body>
+</html>
