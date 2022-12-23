@@ -4,4 +4,4 @@ from.models import Posteo
 class PostForm(ModelForm):
     class Meta:
         model = Posteo
-        fields = ['titulo','cuerpo']
+        fields = ['titulo','subtitulo','imagen','cuerpo','fecha','autor']

@@ -16,16 +16,45 @@
 <body>
     {% block contenido_que_cambia %}
             
-    <form method="post">
+    <!-- Page Header -->
+
+
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <hr class="my-4" /> 
+                <div class="post-preview">
+                     {% if mensaje_publicacion %} 
+                     <p>
+                        {{ mensaje_publicacion }}
+                     </p>
+                     {% endif %}
+                    <form action="{% url 'posteoForm'%}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                        <table>
+                            {{ form.as_p  }}
+                            {{ form.media }}
+                        </table>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block" value="Subir">
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>        
+
+   
+
+   
+    <!-- <form method="post">
         {% csrf_token %}
     <div class="form-outline">
         {{form.as_p}}
         <br>
-    </div>  
-    <!--Blog Text Area-->
-        {{form.media}}
+    </div>
+     {{form.media}}
         <input type="submit">
-    </form>
+    </form>  -->
+       
 
     {% endblock %}
 </body>

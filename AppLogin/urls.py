@@ -13,5 +13,6 @@ urlpatterns = [
     path("login/", logueo, name='login'),
     path("logout/", LogoutView.as_view(), name='logout'),
     path("editarperfil/", editarPerfil, name='editarPerfil'), # me muestra el formulario para editar (template 'editar perfil') y tmb llama a la funcion editarPerfil
-    path("agregarAvatar/", agregarAvatar, name="agregarAvatar")
+    path("agregarAvatar/", agregarAvatar, name="agregarAvatar"),
+    path("about", about, name= "about"),
 ]#+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

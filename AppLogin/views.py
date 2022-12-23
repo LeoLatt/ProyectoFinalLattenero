@@ -7,22 +7,23 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-#@login_required
+
 def inicio(request):
-    lista=Avatar.objects.filter(user=request.user)
-    
+    if request.user.is_authenticated:
+        lista=Avatar.objects.filter(user=request.user)
+
     return render (request, "inicio.html", {"imagen":obtenerAvatar(request)})
 
-    return render (request, "inicio.html")
 
 
 def obtenerAvatar(request):
-    lista=Avatar.objects.filter(user=request.user)
-    if len(lista)!=0:
-        imagen=lista[0].imagen.url
-    else:
-        imagen="/media/avatares/avatarpordefecto.jpg"
-    return imagen
+    if request.user.is_authenticated:
+        lista=Avatar.objects.filter(user=request.user)
+        if len(lista)!=0:
+            imagen=lista[0].imagen.url
+        else:
+            imagen="/media/avatares/avatarpordefecto.jpg"
+        return imagen
 
 
 def agregarAvatar(request):
@@ -36,18 +37,10 @@ def agregarAvatar(request):
             avatar.save()
             return render(request, "inicio.html", {"mensaje":"Avatar agregado correctamente"})
         else:
-            return render(request, "AgregarAvatar.html", {"formulario": form, "usuario": request.user})
+            return render(request, "AgregarAvatar.html", {"formulario": form, "usuario": request.user, "imagen":obtenerAvatar(request)})
     else:
         form=AvatarForm()
-        return render(request , "AgregarAvatar.html", {"formulario": form, "usuario": request.user})
-
-
-
-
-
-
-
-
+        return render(request , "AgregarAvatar.html", {"formulario": form, "usuario": request.user, "imagen":obtenerAvatar(request)})
 
 
 
@@ -59,13 +52,13 @@ def register(request):
             username=form.cleaned_data.get("username")
             form.save()
             #aca se podria loguear el usuario, con authenticate y login... pero no lo hago
-            return render(request, "inicio.html", {"mensaje":f"Usuario {username} creado correctamente"})
+            return render(request, "inicio.html", {"mensaje":f"Usuario {username} creado correctamente", "imagen":obtenerAvatar(request)})
         else:
-            return render(request, "register.html", {"form":form, "mensaje":"Error al crear el usuario"})
+            return render(request, "register.html", {"form":form, "mensaje":"Error al crear el usuario", "imagen":obtenerAvatar(request)})
         
     else:
         form=CrearUsuario()
-    return render(request, "register.html", {"form":form})
+    return render(request, "register.html", {"form":form, "imagen":obtenerAvatar(request)})
 
 
 def logueo(request):
@@ -78,16 +71,16 @@ def logueo(request):
             print(usuario)
             if usuario is not None:    
                 login(request, usuario)
-                return render(request, 'inicio.html', {'mensaje':f"Bienvenido {usuario}" })
+                return render(request, 'inicio.html', {'mensaje':f"Bienvenido {usuario}", "imagen":obtenerAvatar(request)})
             else:
-                return render(request, 'login.html', {'mensaje':"Usuario o contraseña incorrectos", 'form':form})
+                return render(request, 'login.html', {'mensaje':"Usuario o contraseña incorrectos", 'form':form, "imagen":obtenerAvatar(request)})
 
         else:
-            return render(request, 'login.html', {'mensaje':"Usuario o contraseña incorrectos", 'form':form})
+            return render(request, 'login.html', {'mensaje':"Usuario o contraseña incorrectos", 'form':form, "imagen":obtenerAvatar(request)})
 
     else:
         form = AuthenticationForm()
-    return render(request, "login.html", {"form":form})
+    return render(request, "login.html", {"form":form, "imagen":obtenerAvatar(request)})
 
 @login_required
 def editarPerfil(request):
@@ -102,9 +95,14 @@ def editarPerfil(request):
             usuario.first_name=info["first_name"]
             usuario.last_name=info["last_name"]
             usuario.save()
-            return render(request, "inicio.html", {"mensaje":"Perfil editado correctamente"})
+            return render(request, "inicio.html", {"mensaje":"Perfil editado correctamente", "imagen":obtenerAvatar(request)})
         else:
-            return render(request, "editarUsuario.html", {"form":form, "nombreusuario":usuario.username, "mensaje":"Error al editar el perfil"})
+            return render(request, "editarUsuario.html", {"form":form, "nombreusuario":usuario.username, "mensaje":"Error al editar el perfil", "imagen":obtenerAvatar(request)})
     else:
         form=UserEditForm(instance=usuario)
-        return render(request, "editarUsuario.html", {"form":form, "nombreusuario":usuario.username})
+        return render(request, "editarUsuario.html", {"form":form, "nombreusuario":usuario.username, "imagen":obtenerAvatar(request)})
+
+
+def about(request):
+    
+    return render(request, "about.html", {"imagen": obtenerAvatar(request)})

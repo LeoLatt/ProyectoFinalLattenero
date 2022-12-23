@@ -10,5 +10,7 @@ urlpatterns = [
     path("", inicio, name='inicio'),
     #path("index/", index, name='index'),
     path("posteoForm/", posteoForm, name='posteoForm'),
+    path("post/<id>", post, name = "post"),
+    path("posteos", posteos, name= "posteos"),
 
 ]
