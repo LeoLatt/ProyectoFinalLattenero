@@ -86,7 +86,7 @@ def logueo(request):
 def editarPerfil(request):
     usuario=request.user
     if request.method=="POST":
-        form=UserEditForm(request.POST)
+        form=UserEditForm(request.POST, request.FILES)
         if form.is_valid():
             info=form.cleaned_data
             usuario.email=info["email"]

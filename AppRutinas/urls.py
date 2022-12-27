@@ -12,5 +12,7 @@ urlpatterns = [
     path("posteoForm/", posteoForm, name='posteoForm'),
     path("post/<id>", post, name = "post"),
     path("posteos", posteos, name= "posteos"),
+    path("eliminarpost/<id>", eliminarPost, name = "eliminarPost"),
+    path("editarPosteos/<id>", editarPosteos, name="editarPosteos"),
 
 ]

@@ -22,7 +22,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.html">Leo Lattenero </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -32,7 +32,7 @@
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inicio' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about' %}">About</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posteos' %}">Posteos</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posteoForm' %}">Postear</a></li>
                         {% if user.is_authenticated %}
                         <style>
                             .img {
@@ -42,7 +42,7 @@
                            
                         </style>
                          
-                        <p> Hola {{ user.username }}</p>
+                        <p> Hola   {{ user.username }}</p>
                         <img src="{{ imagen }}" class="img" alt="">
                         <a class="btn btn-danger" style="width:170px; height:80px;" href="{% url 'logout' %}">Desloguearme</a>
                         {% else %}
@@ -76,12 +76,12 @@
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="post.html">
-                            <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                            <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+                            <h2 class="post-title"></h2>
+                            <h3 class="post-subtitle"></h3>
                         </a>
                         <p class="post-meta">
                             Posted by
-                            <a href="#!">Start Bootstrap</a>
+                            <a href="#!">Leo Lattenero </a>
                             on September 24, 2022
                         </p>
                     </div>
@@ -89,10 +89,12 @@
                     <hr class="my-4" />
                     <!-- Post preview-->
                     <div class="post-preview">
-                        <a href="post.html"><h2 class="post-title">I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.</h2></a>
+                        <a href="post.html"><h2 class="post-title">Mi primer post fijo</h2></a>
                         <p class="post-meta">
                             Posted by
-                            <a href="#!">Start Bootstrap</a>
+                            <a href="#!">Leo Lattenero
+
+                            </a>
                             on September 18, 2022
                         </p>
                     </div>
@@ -101,33 +103,23 @@
                     <!-- Post preview-->
                     <div class="post-preview">
                         <a href="post.html">
-                            <h2 class="post-title">Science has not yet mastered prophecy</h2>
-                            <h3 class="post-subtitle">We predict too much for the next year and yet far too little for the next ten.</h3>
+                            <h2 class="post-title">Otro posteo fijo</h2>
+                            <h3 class="post-subtitle">subtitulo de posteo fijo</h3>
                         </a>
                         <p class="post-meta">
                             Posted by
-                            <a href="#!">Start Bootstrap</a>
+                            <a href="#!">Leo Lattenero</a>
                             on August 24, 2022
                         </p>
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />
                     <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Failure is not an option</h2>
-                            <h3 class="post-subtitle">Many say exploration is part of our destiny, but it’s actually our duty to future generations.</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on July 8, 2022
-                        </p>
-                    </div>
+                    
                     <!-- Divider-->
                     <hr class="my-4" />
                     <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'posteos' %}">Older Posts →</a></div>
                 </div>
             </div>
         </div>
