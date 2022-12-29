@@ -54,8 +54,9 @@ def posteoForm(request): #add_post
             form=form.cleaned_data
             post=Posteo(titulo=form["titulo"], imagen=form["imagen"], cuerpo=form["cuerpo"], fecha = date.today(),subtitulo=form["subtitulo"], autor=form["autor"])
             post.save()
-            return render(request, 'posteoForm.html', {'form':form, "mensaje_publicacion": "El posteo fue subido correctamente!", "imagen": obtenerAvatar(request)})
-            
+            return render(request, 'inicio.html', {'form':form, "mensaje": "El posteo fue subido correctamente!", "imagen": obtenerAvatar(request)})
+        else:
+            return render(request, "posteoForm.html", {"form" : PostForm(), "mensaje": "Error: Poste de nuevo por favor"})    
     else:
 
         form = PostForm()
@@ -74,7 +75,7 @@ def posteos(request):
 def eliminarPost(request, id):
     post=Posteo.objects.get(id=id)
     post.delete()
-    posteos=Posteo.objects.all()
+    posteos=Posteo.objects.all().order_by('-id')
     return render(request, "posteos.html", {"mensaje":"Post eliminado correctamente", "posteos":posteos, "imagen": obtenerAvatar(request)})
 
 #@login_required   
@@ -99,7 +100,7 @@ def editarPosteos(request, id):
 
             posteo.save() # guardo el posteo con los datos nuevos
             print(posteo)
-            posteos=Posteo.objects.all() #llamo a todos los posteos para q los muestre
+            posteos=Posteo.objects.all().order_by('-id') #llamo a todos los posteos para q los muestre
             return render (request, "posteos.html", {"mensaje": "POSTEO EDITADO CORRECTAMENTE!!", "posteos":posteos, "imagen": obtenerAvatar(request)})
     else:
         form= PostForm(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo, "autor":posteo.autor, "fecha":posteo.fecha})

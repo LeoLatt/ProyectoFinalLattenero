@@ -23,9 +23,9 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <hr class="my-4" /> 
                 <div class="post-preview">
-                     {% if mensaje_publicacion %} 
+                     {% if mensaje %} 
                      <p>
-                        {{ mensaje_publicacion }}
+                        {{ mensaje }}
                      </p>
                      {% endif %}
                     <form action="{% url 'posteoForm'%}" method="POST" enctype="multipart/form-data"> {% csrf_token %}

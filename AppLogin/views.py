@@ -35,7 +35,7 @@ def agregarAvatar(request):
                 avatarViejo[0].delete()
             avatar=Avatar(user=request.user, imagen=request.FILES["imagen"])
             avatar.save()
-            return render(request, "inicio.html", {"mensaje":"Avatar agregado correctamente"})
+            return render(request, "inicio.html", {"mensaje":"Avatar agregado correctamente", "imagen":obtenerAvatar(request)})
         else:
             return render(request, "AgregarAvatar.html", {"formulario": form, "usuario": request.user, "imagen":obtenerAvatar(request)})
     else:
@@ -86,7 +86,7 @@ def logueo(request):
 def editarPerfil(request):
     usuario=request.user
     if request.method=="POST":
-        form=UserEditForm(request.POST, request.FILES)
+        form=UserEditForm(request.POST)
         if form.is_valid():
             info=form.cleaned_data
             usuario.email=info["email"]
