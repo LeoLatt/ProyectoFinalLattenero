@@ -9,17 +9,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Clean Blog - Start Bootstrap Theme</title>
-        <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-        
         <style>
-                        
             .img {
                 margin-top: 14px;
                 margin-left: 14px;
@@ -50,15 +40,31 @@
                 height: 70px;
                 padding: 16px 10px;
                 color:lightblue;
-            
-            }
-            .saludo {
                
-                color:lightblue;
-            
+                
+            }
+            .men {
+                display: inline-block;
+                margin-top: 14px;
+                background-color: rgb(68, 255, 0);
+                font-family:'Times New Roman', Times, serif;
+                width: 120px;
+                height: 70px;
+                padding: 16px 10px;
+                color:rgb(237, 245, 248);
+               
+                
             }
         </style>
-
+         
+        <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
@@ -73,12 +79,14 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inicio' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about' %}">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posteos' %}">Posteos</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Registro</a></li>
                         {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posteos' %}">Posteos</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posteoForm' %}">Postear</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'mensajeFormulario' %}">Mensajeria</a></li>
                         
-                        
-                        <p class="saludo">   Hola   {{ user.username }}</p>
+                      
+                        <p> Hola   {{ user.username }}</p>
                         <img src="{{ imagen }}" class="img" alt="">
                         <a class="bot2" href="{% url 'logout' %}">Logout</a>
                         {% else %}
@@ -89,14 +97,14 @@
             </div>
         </nav>
         <!-- Page Header-->
-        <header class="masthead" style="background-image: url('../static/assets/img/entrenamiento.png')">
+        <header class="masthead" style="background-image: url('../static/assets/img/home-bg.jpg')">
             <div class="container position-relative px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
-                         <p>
-                            Hola mi nombre es Leo Lattenero y este es mi blog de entrenamientos
-                         </p>
+                            {% block titulo %}
+
+                            {% endblock %}
                         </div>
                     </div>
                 </div>
@@ -110,10 +118,18 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <!-- Post preview-->
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'inicio' %}">Home →</a></div>
+                    <div class="post-preview">
+                        <a href="post.html">
+                            <h2 class="post-title"></h2>
+                            <h3 class="post-subtitle"></h3>
+                        </a>
+                        <p class="post-meta">
+                            Blog de
+                            <a href="about">Leo Lattenero </a>
+                            on Dicember 22, 2022
+                        </p>
+                  
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'mensajeFormulario' %}"> Mensajeria →</a></div>
                 </div>
             </div>
         </div>

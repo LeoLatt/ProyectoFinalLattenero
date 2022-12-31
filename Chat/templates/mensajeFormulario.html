@@ -1,0 +1,62 @@
+{% extends "index.html" %} 
+
+{% load static %}
+
+{% block titulo %}
+<span class="subheading">mensajeFormulario</span>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+{% csrf_token %} 
+<div>
+    <style>
+
+        .men {
+            display: inline;
+            margin-left: 950px;
+            background-color: rgb(70, 172, 32);
+            font-family:'Times New Roman', Times, serif;
+            width: 120px;
+            height: 70px;
+            padding: 3px 20px;
+            color:rgb(237, 245, 248);
+            border-style: solid;
+           
+            
+        
+        }
+        .men2 {
+            display: inline;
+            margin-left: 950px;
+            background-color: grey;
+            font-family:'Times New Roman', Times, serif;
+            width: 120px;
+            height: 70px;
+            padding: 3px 20px;
+            color:rgb(237, 245, 248);
+            border-style: solid;
+            
+        
+        }
+    </style>
+</div>
+
+<h2 class="text-black mb-5">Enviar Mensajes</h2>
+<form action="mensajeFormulario" method="POST"> {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    <input type="submit" value="Enviar">
+    
+</form>
+
+    <div class="post-preview">
+        <a class="men" href="{% url 'MensajeRecibido' %}">  Mensajes recibidos</a> 
+        <a class="men2" href="{% url 'MensajeEnviado' %}">  Mensajes enviados</a>
+    </div>
+        
+    
+
+    {{ alerta }}
+{% endblock %}

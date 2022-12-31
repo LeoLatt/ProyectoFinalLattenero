@@ -21,10 +21,10 @@
 
 <form action="{% url 'editarPosteos' posteo.id %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
 
-    <table>
+    <table width="100%" style="border: 4px double grey;">
     
-        {{ form.as_p  }}
-        {{ form.media }}
+        <th> {{ form.as_p  }}</th>
+        <th> {{ form.media }}</th>
     
     </table>
     

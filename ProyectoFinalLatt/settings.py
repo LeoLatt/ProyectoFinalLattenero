@@ -41,8 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AppLogin',
     'AppRutinas',
+    'Chat',
     'ckeditor', # CKEditor config
     'ckeditor_uploader',
+    
 ]
 
 MIDDLEWARE = [

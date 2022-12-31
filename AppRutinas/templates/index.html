@@ -9,6 +9,54 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Clean Blog - Start Bootstrap Theme</title>
+        <style>
+            .img {
+                margin-top: 14px;
+                margin-left: 14px;
+                width: 70px;
+                height: 70px;
+            }
+            .bot {
+                display: inline-block;
+                margin-top: 14px;
+                background-color: blue;
+                font-family:'Times New Roman', Times, serif;
+                width: 67px;
+                height: 38px;
+                padding: 3px 9px;
+                color:lightblue;
+                border-radius: 4px;
+                
+            }
+            .bot:hover {
+                background-color: rgb(7, 25, 91);
+            }
+            .bot2 {
+                display: inline-block;
+                margin-top: 14px;
+                background-color: red;
+                font-family:'Times New Roman', Times, serif;
+                width: 80px;
+                height: 70px;
+                padding: 16px 10px;
+                color:lightblue;
+               
+                
+            }
+            .men {
+                display: inline-block;
+                margin-top: 14px;
+                background-color: rgb(68, 255, 0);
+                font-family:'Times New Roman', Times, serif;
+                width: 120px;
+                height: 70px;
+                padding: 16px 10px;
+                color:rgb(237, 245, 248);
+               
+                
+            }
+        </style>
+         
         <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -31,22 +79,18 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'inicio' %}">Home</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'about' %}">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'register' %}">Registro</a></li>
+                        {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posteos' %}">Posteos</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'posteoForm' %}">Postear</a></li>
-                        {% if user.is_authenticated %}
-                        <style>
-                            .img {
-                                width: 80px;
-                                height: 80px;
-                            }
-                           
-                        </style>
-                         
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'mensajeFormulario' %}">Mensajeria</a></li>
+                        
+                      
                         <p> Hola   {{ user.username }}</p>
                         <img src="{{ imagen }}" class="img" alt="">
-                        <a class="btn btn-danger" style="width:170px; height:80px;" href="{% url 'logout' %}">Desloguearme</a>
+                        <a class="bot2" href="{% url 'logout' %}">Logout</a>
                         {% else %}
-                        <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                        <a class="bot" href="{% url 'login' %}">Login</a>
                         {% endif %}
                     </ul>
                 </div>
@@ -80,46 +124,12 @@
                             <h3 class="post-subtitle"></h3>
                         </a>
                         <p class="post-meta">
-                            Posted by
-                            <a href="#!">Leo Lattenero </a>
-                            on September 24, 2022
+                            Blog de
+                            <a href="about">Leo Lattenero </a>
+                            on December 22, 2022
                         </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html"><h2 class="post-title">Mi primer post fijo</h2></a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Leo Lattenero
-
-                            </a>
-                            on September 18, 2022
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">Otro posteo fijo</h2>
-                            <h3 class="post-subtitle">subtitulo de posteo fijo</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Leo Lattenero</a>
-                            on August 24, 2022
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Post preview-->
-                    
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                    <!-- Pager-->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'posteos' %}">Older Posts →</a></div>
+                  
+                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'inicio' %}"> Home →</a></div>
                 </div>
             </div>
         </div>

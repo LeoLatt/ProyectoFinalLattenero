@@ -1,0 +1,20 @@
+{% extends "index.html" %} 
+
+{% load static %}
+
+{% block titulo %}
+<span class="subheading">Mensajes</span>
+{% endblock %}
+
+{% block titulo %}
+<h2 class="text-black mb-5">mensaje</h2>
+<form action="{% url 'register' %}" method="POST">{% csrf_token %}
+   
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Ingresar">
+
+    </form>
+    {{ alerta }}
+{% endblock %}

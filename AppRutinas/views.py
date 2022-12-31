@@ -44,7 +44,7 @@ def inicio(request):
     return render (request, "inicio.html") #Llama al html Fitness de template
 
 
-#@login_required
+@login_required
 def posteoForm(request): #add_post
 
     if request.method == "POST":
@@ -71,14 +71,14 @@ def posteos(request):
     posteos = Posteo.objects.all().order_by('-id') # Consulta por id, de mayor a menor (ORDER BY id DESC en SQL)
     return render(request, "posteos.html", {"posteos": posteos, "imagen": obtenerAvatar(request)}) 
 
-#@login_required
+@login_required
 def eliminarPost(request, id):
     post=Posteo.objects.get(id=id)
     post.delete()
     posteos=Posteo.objects.all().order_by('-id')
     return render(request, "posteos.html", {"mensaje":"Post eliminado correctamente", "posteos":posteos, "imagen": obtenerAvatar(request)})
 
-#@login_required   
+@login_required   
 def editarPosteos(request, id):
     posteo=Posteo.objects.get(id=id)
     if request.method=="POST":

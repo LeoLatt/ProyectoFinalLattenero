@@ -3,7 +3,7 @@ from AppLogin.forms import CrearUsuario, UserEditForm, AvatarForm
 from .models import Avatar
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -89,11 +89,13 @@ def editarPerfil(request):
         form=UserEditForm(request.POST)
         if form.is_valid():
             info=form.cleaned_data
-            usuario.email=info["email"]
-            usuario.password1=info["password1"]
-            usuario.password2=info["password2"]
+
             usuario.first_name=info["first_name"]
             usuario.last_name=info["last_name"]
+            usuario.email=info["email"]
+            usuario.set_password(info["password1"])
+            usuario.set_password(info["password2"])
+            
             usuario.save()
             return render(request, "inicio.html", {"mensaje":"Perfil editado correctamente", "imagen":obtenerAvatar(request)})
         else:
@@ -101,6 +103,11 @@ def editarPerfil(request):
     else:
         form=UserEditForm(instance=usuario)
         return render(request, "editarUsuario.html", {"form":form, "nombreusuario":usuario.username, "imagen":obtenerAvatar(request)})
+
+
+def logOut(request):
+    logout(request)
+    return render(request, "logout.html", {"mensaje": "Ha cerrado sesion exitosamente"})
 
 
 def about(request):

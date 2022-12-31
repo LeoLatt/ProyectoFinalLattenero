@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 class CrearUsuario(UserCreationForm):
-    nombre= models.CharField(max_length=50)
+    username= models.CharField(max_length=50)
     email= models.EmailField()
     password1= forms.CharField(label="Ingrese Contraseña", widget=forms.PasswordInput)
     password2= forms.CharField(label="Repita Contraseña", widget=forms.PasswordInput)
@@ -18,11 +18,11 @@ class CrearUsuario(UserCreationForm):
         help_text={k:"" for k in fields} #para cada uno de los campos del formulario, le asigna un valor vacio
 
 class UserEditForm(UserCreationForm):
-    email = forms.EmailField()
-    password1= forms.CharField(label="Ingrese Contraseña", widget=forms.PasswordInput)
-    password2= forms.CharField(label="Repita Contraseña", widget=forms.PasswordInput)
     first_name=forms.CharField(label='Modificar Nombre')
     last_name=forms.CharField(label='Modificar Apellido')
+    password1= forms.CharField(label="Ingrese Contraseña Nueva", widget=forms.PasswordInput)
+    password2= forms.CharField(label="Repita Contraseña Nueva", widget=forms.PasswordInput)
+    email = forms.EmailField()
 
     class Meta:
         model = User

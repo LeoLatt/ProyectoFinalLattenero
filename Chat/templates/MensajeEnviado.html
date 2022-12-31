@@ -1,0 +1,45 @@
+{% extends "inicioChat.html" %} 
+
+{% load static %}
+
+{% block titulo %}
+<span class="subheading">mensajes</span>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<h4 class="text-black-50" style="text-align: center;">Listado de mensajes enviados</h4>
+
+<style>
+    th, td {
+        border: 1px groove black;
+    }
+
+
+</style>
+
+<table width="100%" style="border: 3px solid rgb(0, 136, 255);">
+    <tr>
+        <th>Desde:      </th> 
+        <th>Para:       </th>
+        <th>Mensajes:   </th>
+        <th>Hora        </th>
+        <th>Leido       </th>
+    </tr>
+    {% for indice in mensajes %}
+    <tr>
+        <td>{{ indice.enviar }}</td>
+        <td> {{ indice.recibir }}</td>
+        <td style="text-align: left;">{{ indice.mensaje }}</td>
+        <td>{{ indice.hora }}</td>
+        <td>{{ indice.leido }}</td>
+        
+    </tr>   
+        
+    {% endfor %}
+    
+</table>
+<br>
+<br>
+
+{% endblock %}

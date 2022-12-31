@@ -29,10 +29,12 @@
                      </p>
                      {% endif %}
                     <form action="{% url 'posteoForm'%}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-                        <table>
-                            {{ form.as_p  }}
-                            {{ form.media }}
+
+                        <table width="100%" style="border: 4px double;">
+                            <th>  {{ form.as_p  }}</th>
+                            <td>  {{ form.media }}</td>
                         </table>
+
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-block" value="Subir">
                             
