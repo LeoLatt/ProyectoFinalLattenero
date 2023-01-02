@@ -12,4 +12,5 @@ urlpatterns = [
 
     path("MensajeRecibido", MensajeRecibido , name = "MensajeRecibido"),
     path("mensajeEnviado", MensajeEnviado , name = "MensajeEnviado"),
+    path("eliminarMensaje", eliminarMensaje , name = "eliminarMensaje"),
 ]
