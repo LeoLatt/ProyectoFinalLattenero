@@ -22,7 +22,6 @@
             color:rgb(237, 245, 248);
             border-style: solid;
            
-            
         
         }
         .men2 {
@@ -42,6 +41,7 @@
 </div>
 
 <h2 class="text-black mb-5">Enviar Mensajes</h2>
+{% if not alerta %}
 <form action="mensajeFormulario" method="POST"> {% csrf_token %}
     <table>
         {{ form.as_table }}
@@ -50,13 +50,11 @@
     <input type="submit" value="Enviar">
     
 </form>
-
+{% endif %}
     <div class="post-preview">
         <a class="men" href="{% url 'MensajeRecibido' %}">  Mensajes recibidos</a> 
         <a class="men2" href="{% url 'MensajeEnviado' %}">  Mensajes enviados</a>
     </div>
-        
-    
 
     {{ alerta }}
 {% endblock %}
