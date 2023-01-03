@@ -9,8 +9,6 @@ urlpatterns = [
     path("", views.home, name = "home"),
     path("mensajeFormulario", mensajeFormulario , name = "mensajeFormulario"),
     path("mensajeUsuarios", mensajeUsuarios , name = "mensajeUsuarios"),
-
     path("MensajeRecibido", MensajeRecibido , name = "MensajeRecibido"),
     path("mensajeEnviado", MensajeEnviado , name = "MensajeEnviado"),
-    path("eliminarMensaje", eliminarMensaje , name = "eliminarMensaje"),
 ]

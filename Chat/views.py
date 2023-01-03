@@ -22,16 +22,14 @@ def mensajeFormulario(request):
             form = form.cleaned_data
             print(form)
 
-            
             paraquien = form['receiver']
             textoMensaje = form['mensaje']
             
-
             mensaje1 = Mensaje(enviar=(usuario), recibir = (paraquien), mensaje=textoMensaje, leido = False)
             mensaje1.save()
-            return render(request, 'mensajeFormulario.html', {"form": form, "alerta": "mensaje enviado", "imagen": obtenerAvatar(request)} )
+            return render(request, 'mensajeFormulario.html', {"form": form, "alerta": "Mensaje enviado correctamente", "imagen": obtenerAvatar(request)} )
         else:
-            return render(request, 'home.html', {"alerta": "pailas", "imagen": obtenerAvatar(request)} )
+            return render(request, 'home.html', {"alerta": "Error al enviar el mensaje", "imagen": obtenerAvatar(request)} )
     else:
         form = MensajeForm()
        
@@ -71,12 +69,3 @@ def mensajeUsuarios(request):
                       {'users': User.objects.exclude(username=request.user.username), "imagen": obtenerAvatar(request)})
 
 
-def eliminarMensaje(request, id):
-    username=request.user.get_username()
-    mensaje=Mensaje.objects.filter(id = id)
-    if username or request.user.is_superuser:
-        mensaje.delete()
-        mensajes=Mensaje.objects.all().order_by('-id')
-        return render(request, "MensajeEnviado.html", {"mensaje":"mensaje eliminado correctamente", "mensajes":mensajes, "imagen": obtenerAvatar(request)})
-    else:
-        return render(request, "mensajes.html", {"mensaje": "Solo puede Borrar sus mensajes!", "imagen": obtenerAvatar(request)})

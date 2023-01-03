@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block titulo %}
-<span class="subheading">mensajeFormulario</span>
+<span class="subheading">Mensajeria del Blog</span>
 {% endblock %}
 
 {% block contenido_que_cambia %}
@@ -13,7 +13,7 @@
 
         .men {
             display: inline;
-            margin-left: 950px;
+            margin-left: 949px;
             background-color: rgb(70, 172, 32);
             font-family:'Times New Roman', Times, serif;
             width: 120px;
@@ -40,8 +40,10 @@
     </style>
 </div>
 
-<h2 class="text-black mb-5">Enviar Mensajes</h2>
 {% if not alerta %}
+
+<h2 class="text-black mb-5">Enviar Mensajes</h2>
+
 <form action="mensajeFormulario" method="POST"> {% csrf_token %}
     <table>
         {{ form.as_table }}

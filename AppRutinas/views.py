@@ -69,7 +69,7 @@ def posteoForm(request): #add_post
 @login_required
 def post(request, id):
     publicacion = Posteo.objects.get(id = id)
-    return render(request, "post.html", {"publicacion" : publicacion, "imagen": obtenerAvatar(request)})
+    return render(request, "post.html", {"publicacion" : publicacion, "mensaje": "Visualizacion de los detalles del Posteo", "imagen": obtenerAvatar(request)})
 
 @login_required
 def posteos(request):
