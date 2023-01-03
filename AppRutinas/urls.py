@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
 
-    path("", inicio, name='inicio'),
+    path("", inicioRut, name='inicioRut'),
     #path("index/", index, name='index'),
     path("posteoForm/", posteoForm, name='posteoForm'),
     path("post/<id>", post, name = "post"),

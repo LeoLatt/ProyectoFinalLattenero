@@ -20,9 +20,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("AppLogin.urls")),
+    path("usuarios/", include("AppLogin.urls")),
     path("", include("AppRutinas.urls")),
-    path("", include("Chat.urls")),
+    path("chat/", include("Chat.urls")),
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')), # The CKEditor path
 ]
 

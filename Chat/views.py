@@ -10,8 +10,7 @@ from Chat.forms import *
 from django.utils.functional import SimpleLazyObject
 
 # Create your views here.
-def home(request):
-    return render(request, "home.html",{ "imagen": obtenerAvatar(request)})
+
 
 def mensajeFormulario(request):
     usuario=request.user 
@@ -34,14 +33,7 @@ def mensajeFormulario(request):
         form = MensajeForm()
        
     return render(request, 'mensajeFormulario.html', {"form": form, "imagen": obtenerAvatar(request)} )
-# pruebas
-# def leerMensaje(request, enviar, recibir):
-#     if request.method == "GET":
-#         return render(request, "leerMensaje.html",
-#                       {'users': User.objects.exclude(username=request.user.username),
-#                        'receiver': User.objects.get(id=recibir),
-#                        'mensaje': Mensaje.objects.filter(enviar_id=enviar, recibir_id=recibir) |
-#                                    Mensaje.objects.filter(enviar_id=enviar, recibir_id=enviar)})
+
 def MensajeRecibido(request):
     usuario = request.user
     herram = Mensaje.objects.filter(recibir = usuario)

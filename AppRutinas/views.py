@@ -11,7 +11,7 @@ from datetime import date
 # Create your views here.
 
 
-def inicio(request):
+def inicioRut(request):
     if request.user.is_authenticated:
         posteos = Posteo.objects.all().order_by('-id')[:4] # Consulta por id, y limita a 4 de mayor a menor (ORDER BY id DESC en SQL) (LIMIT 4)
         if len(posteos) == 0:
@@ -39,10 +39,10 @@ def inicio(request):
             post2 = posteos[1]
             post3 = posteos[2]
             post4 = posteos[3]
-        return render(request, "inicio.html", {"post1": post1, "post2": post2, "post3": post3, "post4": post4}, {"imagen": obtenerAvatar(request)})
+        return render(request, "inicioRut.html", {"post1": post1, "post2": post2, "post3": post3, "post4": post4, "imagen": obtenerAvatar(request)})
 
 
-    return render (request, "inicio.html") #Llama al html Fitness de template
+    return render (request, "inicioRut.html", {"imagen": obtenerAvatar(request)}) #Llama al html Fitness de template
 
 
 @login_required
