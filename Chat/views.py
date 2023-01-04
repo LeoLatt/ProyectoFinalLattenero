@@ -51,9 +51,6 @@ def MensajeEnviado(request):
     
     return render(request, "MensajeEnviado.html", {"mensajes": herram, "imagen": obtenerAvatar(request)})
 
-def buscarMensaje(request):
-    pass
-
 def mensajeUsuarios(request):
    
     if request.method == "GET":

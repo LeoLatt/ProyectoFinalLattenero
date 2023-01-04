@@ -83,7 +83,7 @@ def logueo(request):
     return render(request, "login.html", {"form":form, "imagen":obtenerAvatar(request)})
 
 @login_required
-def editarPerfil(request):
+def editarUsuario(request):
     usuario=request.user
     if request.method=="POST":
         form=UserEditForm(request.POST)
@@ -111,5 +111,4 @@ def logOut(request):
 
 
 def about(request):
-    
     return render(request, "about.html", {"imagen": obtenerAvatar(request)})
