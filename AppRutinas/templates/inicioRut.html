@@ -1,4 +1,4 @@
-{% extends "index.html" %} <!--ahora inicio sos hijo de template index "extends" lo hace heredar MIN.28.C20-->
+{% extends "indexR.html" %} <!--ahora inicio sos hijo de template index "extends" lo hace heredar MIN.28.C20-->
 
 {% load static %} <!--siempre se cargan los estaticos-->
 
@@ -16,6 +16,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <!-- Post 1 preview-->
                 <br>
+                {% if user.is_authenticated %}
                 <div class="post-preview">
                     {% if post1 %}
                     <a href="{% url 'post' post1.id %}">
@@ -79,6 +80,7 @@
                 <hr class="my-4" />
                 <!-- Pager-->
                 <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'posteos' %}">Ver todas→</a></div>
+                {% endif %}
             </div>
         </div>
     </div>

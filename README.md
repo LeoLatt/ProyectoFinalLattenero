@@ -20,3 +20,5 @@ El proyecto esta basado en un MVT, y en este caso cuenta con 3 Apps, a saber:
 Link al video del proyecto final de Leonardo Lattenero:
 
 https://drive.google.com/file/d/1sIXwsgJV0qCmrHYj9GgVyjF7I15BtPCz/view?usp=sharing
+
+Recomendacion: el readme fue escrito en el VSC, por lo que se visualiza mas prolijo leerlo desde ahi.
