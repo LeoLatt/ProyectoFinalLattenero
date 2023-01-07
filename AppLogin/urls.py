@@ -13,5 +13,5 @@ urlpatterns = [
     path("logout/", logOut, name='logout'),
     path("editarusuario/", editarUsuario, name='editarUsuario'), # me muestra el formulario para editar (template 'editar perfil') y tmb llama a la funcion editarPerfil
     path("agregarAvatar/", agregarAvatar, name="agregarAvatar"),
-    path("about", about, name= "about"),
+    path("about/", about, name= "about"),
 ]

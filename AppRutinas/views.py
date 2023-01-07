@@ -83,7 +83,7 @@ def eliminarPost(request, id):
     if username==post.autor or request.user.is_superuser:
         post.delete()
         posteos=Posteo.objects.all().order_by('-id')
-        return render(request, "posteos.html", {"mensaje":"Post eliminado correctamente", "posteos":posteos, "imagen": obtenerAvatar(request)})
+        return render(request, "mensajes.html", {"mensaje":"Post eliminado correctamente", "posteos":posteos, "imagen": obtenerAvatar(request)})
     else:
         return render(request, "mensajes.html", {"mensaje": "Solo puede Borrar sus publicaciones!", "imagen": obtenerAvatar(request)})
 
@@ -112,7 +112,7 @@ def editarPosteos(request, id):
                 posteo.save() # guardo el posteo con los datos nuevos
                 print(posteo)
                 posteos=Posteo.objects.all().order_by('-id') #llamo a todos los posteos para q los muestre
-                return render (request, "posteos.html", {"mensaje": "POSTEO EDITADO CORRECTAMENTE!!", "posteos":posteos, "imagen": obtenerAvatar(request)})
+                return render (request, "mensajes.html", {"mensaje": "POSTEO EDITADO CORRECTAMENTE!!", "posteos":posteos, "imagen": obtenerAvatar(request)})
         else:
             form= PostForm(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo, "autor":posteo.autor, "fecha":posteo.fecha})
             #manda los datos iniciales del profe q se van a modificar, por get, cuando pones la url en la pagina

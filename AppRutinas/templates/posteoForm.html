@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block titulo %}
-<h2 class="mb-5">Postee su Rutina Favorita</h2>
+<h2 class="mb-5" style= "font-size: 50px; text-align: center; color: white;"> Postee su Rutina Favorita</h2>
 {% endblock %}
 
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Posteo Rutina</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 
@@ -19,45 +19,39 @@
     <!-- Page Header -->
 
     <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <hr class="my-4" /> 
+        <div class="justify-content-center">
+            <div class=" justify-content-center">
+               
                 <div class="post-preview">
                      {% if mensaje %} 
                      <p>
                         {{ mensaje }}
                      </p>
                      {% endif %}
+                    
                     <form action="{% url 'posteoForm'%}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-
-                        <table width="100%" style="border: 4px double;">
+                        <div class="formatotabla">
+                        <table width="100%"  >
                             <th>  {{ form.as_p  }}</th>
                             <td>  {{ form.media }}</td>
                         </table>
-
+                        </div>
+                        <style>
+                              .formatotabla table {
+                                     border: 4px double;
+                                     background-color: lightblue;
+                                                }
+                            
+                        </style>
+                       
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-block" value="Subir">
                             
-
                         </div>
                     </form>
                 </div>
         </div>
     </div>        
-
-   
-
-   
-    <!-- <form method="post">
-        {% csrf_token %}
-    <div class="form-outline">
-        {{form.as_p}}
-        <br>
-    </div>
-     {{form.media}}
-        <input type="submit">
-    </form>  -->
-       
 
     {% endblock %}
 </body>
