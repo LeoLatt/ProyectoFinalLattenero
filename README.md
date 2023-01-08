@@ -25,4 +25,3 @@ Nota1: el Link anterior es el correcto al video del proyecto, el que puse en Cod
 
 Nota2: los usuarios Admin y Leonardo, son administradores.
 
-Recomendacion: el Readme fue escrito en el VSC, por lo que se visualiza mas prolijo leerlo desde ahi.
