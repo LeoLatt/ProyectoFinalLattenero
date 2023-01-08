@@ -31,7 +31,7 @@
                     
                     <form action="{% url 'posteoForm'%}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
                         <div class="formatotabla">
-                        <table width="100%"  >
+                        <table width="100%">
                             <th>  {{ form.as_p  }}</th>
                             <td>  {{ form.media }}</td>
                         </table>
@@ -40,7 +40,8 @@
                               .formatotabla table {
                                      border: 4px double;
                                      background-color: lightblue;
-                                                }
+                                     text-align: left;
+                                                  }
                             
                         </style>
                        

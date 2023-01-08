@@ -19,6 +19,8 @@ El proyecto esta basado en un MVT, y en este caso cuenta con 3 Apps, a saber:
 
 Link al video del proyecto final de Leonardo Lattenero:
 
-https://drive.google.com/file/d/1sIXwsgJV0qCmrHYj9GgVyjF7I15BtPCz/view?usp=sharing
+https://drive.google.com/file/d/12457SJSoe6tpYYACcJ0bda2To6NnOGap/view?usp=share_link
 
-Recomendacion: el readme fue escrito en el VSC, por lo que se visualiza mas prolijo leerlo desde ahi.
+Nota: este es el Link correcto al proyecto, no el que esta en la plataforma de Coder.
+
+Recomendacion: el Readme fue escrito en el VSC, por lo que se visualiza mas prolijo leerlo desde ahi.

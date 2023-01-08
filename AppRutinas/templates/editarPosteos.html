@@ -14,24 +14,29 @@
 
 {% block contenido_que_cambia %}
 <div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-            <hr class="my-4" /> 
+    <div class="justify-content-center">
+        <div class=" justify-content-center">
             <div class="post-preview">
                
 
-<form action="{% url 'editarPosteos' posteo.id %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                <form action="{% url 'editarPosteos' posteo.id %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    
+                    <table width="100%" style="border: 4px double grey; text-align: left; background-color: lightblue;">
+                    
+                        <th> {{ form.as_p  }}</th>
+                        <th> {{ form.media }}</th>
+                    </div>
+                    </table>
+            
+                    <div class="form-group">
+                    <input type="submit" value="Guardar Cambios">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <table width="100%" style="border: 4px double grey; text-align: center;">
-    
-        <th> {{ form.as_p  }}</th>
-        <th> {{ form.media }}</th>
-    
-    </table>
-    
-    <input type="submit" value="Guardar Cambios">
-    
-    
-</form>
 
 {% endblock %}
