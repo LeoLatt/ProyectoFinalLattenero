@@ -7,7 +7,7 @@ from Chat.views import *
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    path("", mensajeFormulario , name = "mensajeFormulario"),
+    path("mensajeFormulario", mensajeFormulario , name = "mensajeFormulario"),
     path("mensajeUsuarios", mensajeUsuarios , name = "mensajeUsuarios"),
     path("MensajeRecibido", MensajeRecibido , name = "MensajeRecibido"),
     path("mensajeEnviado", MensajeEnviado , name = "MensajeEnviado"),
