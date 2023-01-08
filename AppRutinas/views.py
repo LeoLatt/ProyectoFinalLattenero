@@ -13,7 +13,7 @@ from datetime import date
 
 def inicioRut(request):
     if request.user.is_authenticated:
-        posteos = Posteo.objects.all().order_by('-id')[:4] # Consulta por id, y limita a 4 de mayor a menor (ORDER BY id DESC en SQL) (LIMIT 4)
+        posteos = Posteo.objects.all().order_by('-id')[:4] 
         if len(posteos) == 0:
             post1 = Posteo.objects.none()
             post2 = Posteo.objects.none()
@@ -42,11 +42,11 @@ def inicioRut(request):
         return render(request, "inicioRut.html", {"post1": post1, "post2": post2, "post3": post3, "post4": post4, "imagen": obtenerAvatar(request)})
 
 
-    return render (request, "inicioRut.html", {"imagen": obtenerAvatar(request)}) #Llama al html Fitness de template
+    return render (request, "inicioRut.html", {"imagen": obtenerAvatar(request)}) 
 
 
 @login_required
-def posteoForm(request): #add_post
+def posteoForm(request): 
 
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
@@ -54,7 +54,7 @@ def posteoForm(request): #add_post
         if form.is_valid():
             form=form.cleaned_data
             post=Posteo(titulo=form["titulo"], imagen=form["imagen"], cuerpo=form["cuerpo"], fecha = date.today(),subtitulo=form["subtitulo"], autor=form["autor"])
-            if post.imagen:     # Si el campo de imagen no tiene cambios, simplemente no actualiza el objeto de la db.             
+            if post.imagen:                  
                 post.save()
                 return render(request, 'inicio.html', {'form':form, "mensaje": "El posteo fue subido correctamente!", "imagen": obtenerAvatar(request)})
             else: 
@@ -73,7 +73,7 @@ def post(request, id):
 
 @login_required
 def posteos(request):
-    posteos = Posteo.objects.all().order_by('-id') # Consulta por id, de mayor a menor (ORDER BY id DESC en SQL)
+    posteos = Posteo.objects.all().order_by('-id') 
     return render(request, "posteos.html", {"posteos": posteos, "imagen": obtenerAvatar(request)}) 
 
 @login_required
@@ -98,9 +98,9 @@ def editarPosteos(request, id):
             if form.is_valid():
                 informacion= form.cleaned_data
                 image = informacion["imagen"]
-                if str(type(image)) == "<class 'NoneType'>":      # Si el campo de imagen no tiene cambios, simplemente no actualiza el objeto de la db.
+                if str(type(image)) == "<class 'NoneType'>":      
                     pass
-                else:                                                   # Si entra al else, es por que se le cargo una imagen.
+                else:                                                   
                     posteo.imagen = informacion["imagen"]
 
                 posteo.titulo= informacion["titulo"]
@@ -109,13 +109,13 @@ def editarPosteos(request, id):
                 posteo.autor= informacion["autor"]
                 posteo.fecha= informacion["fecha"]
 
-                posteo.save() # guardo el posteo con los datos nuevos
+                posteo.save() 
                 print(posteo)
-                posteos=Posteo.objects.all().order_by('-id') #llamo a todos los posteos para q los muestre
+                posteos=Posteo.objects.all().order_by('-id') 
                 return render (request, "mensajes.html", {"mensaje": "POSTEO EDITADO CORRECTAMENTE!!", "posteos":posteos, "imagen": obtenerAvatar(request)})
         else:
             form= PostForm(initial={"titulo":posteo.titulo, "subtitulo":posteo.subtitulo, "imagen":posteo.imagen, "cuerpo":posteo.cuerpo, "autor":posteo.autor, "fecha":posteo.fecha})
-            #manda los datos iniciales del profe q se van a modificar, por get, cuando pones la url en la pagina
+            
         return render(request, "editarPosteos.html", {"form":form, "posteo":posteo, "imagen": obtenerAvatar(request)})
     else:
         return render(request, "mensajes.html", {"mensaje": "Solo puede editar sus publicaciones!", "imagen": obtenerAvatar(request)})

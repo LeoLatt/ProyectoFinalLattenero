@@ -16,7 +16,7 @@ class Posteo(models.Model):
     imagen = models.ImageField(upload_to='media', blank=True)
     cuerpo = RichTextUploadingField() # CKEditor Rich Text Field
     autor = models.CharField(max_length=255)
-    fecha = models.DateTimeField(default='2020-11-1')
+    fecha = models.DateTimeField(default='2023-8-1')
 
     def __str__(self):
         return self.titulo

@@ -21,6 +21,8 @@ Link al video del proyecto final de Leonardo Lattenero:
 
 https://drive.google.com/file/d/12457SJSoe6tpYYACcJ0bda2To6NnOGap/view?usp=share_link
 
-Nota: este es el Link correcto al proyecto, no el que esta en la plataforma de Coder.
+Nota1: el Link anterior es el correcto al video del proyecto, el que puse en Coder el 2-1-23 esta desactualizado.
+
+Nota2: los usuarios Admin y Leonardo, son administradores.
 
 Recomendacion: el Readme fue escrito en el VSC, por lo que se visualiza mas prolijo leerlo desde ahi.

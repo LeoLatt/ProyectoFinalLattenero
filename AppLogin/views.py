@@ -28,7 +28,7 @@ def obtenerAvatar(request):
 
 def agregarAvatar(request):
     if request.method=="POST":
-        form=AvatarForm(request.POST, request.FILES)#ademas del post, como trae archivos (yo se que trae archivos xq conozco el form, tengo q usar request.files)
+        form=AvatarForm(request.POST, request.FILES)
         if form.is_valid():
             avatarViejo=Avatar.objects.filter(user=request.user)
             if len(avatarViejo)!=0:
@@ -51,7 +51,6 @@ def register(request):
         if form.is_valid():
             username=form.cleaned_data.get("username")
             form.save()
-            #aca se podria loguear el usuario, con authenticate y login... pero no lo hago
             return render(request, "inicio.html", {"mensaje":f"Usuario {username} creado correctamente", "imagen":obtenerAvatar(request)})
         else:
             return render(request, "register.html", {"form":form, "mensaje":"Error al crear el usuario", "imagen":obtenerAvatar(request)})
@@ -67,7 +66,7 @@ def logueo(request):
         if form.is_valid():
             usu=form.cleaned_data.get("username")
             clave=form.cleaned_data.get("password")
-            usuario=authenticate(username=usu, password=clave)#trae un usuario de la base, que tenga ese usuario y ese pass, si existe, lo trae y si no None
+            usuario=authenticate(username=usu, password=clave)
             print(usuario)
             if usuario is not None:    
                 login(request, usuario)
