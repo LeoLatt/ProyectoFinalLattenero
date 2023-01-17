@@ -25,3 +25,5 @@ Nota1: el Link anterior es el correcto al video del proyecto, el que puse en Cod
 
 Nota2: los usuarios Admin y Leonardo, son administradores.
 
+Nota3: se cambio datetimefield por datefield, para evitar poner hora, minutos y segundos.
+
